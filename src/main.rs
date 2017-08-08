@@ -5,6 +5,7 @@ extern crate iron;
 
 use iron::prelude::*;
 use iron::status;
+use std::env;
 
 fn main() {
     env_logger::init().unwrap();
@@ -15,7 +16,13 @@ fn main() {
         Ok(Response::with((status::Ok, "Hello World!?")))
     }
 
-    info!("Pre-start!");
-    Iron::new(hello_world).http("localhost:3000").unwrap();
-    info!("On 3000");
+    match env::var("PORT") {
+        Ok(port) => println!("Port: {}", port),
+        Err(e) => println!("Couldn't read LANG ({})", e),
+    };
+    let port: String = env::var("PORT").unwrap();
+    info!("Port: {}", port);
+    Iron::new(hello_world)
+        .http(format!("0.0.0.0:{}", port))
+        .unwrap();
 }
