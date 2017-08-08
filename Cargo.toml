@@ -1,0 +1,12 @@
+[package]
+name = "is-deployed"
+version = "0.1.0"
+authors = ["Gergely Imreh <imrehg@gmail.com>"]
+
+[dependencies]
+iron = "0.5.1"
+iron-tera = "0.4.0"
+tera = "0.10.9"
+github-rs = "0.5.1"
+log = "0.3.8"
+env_logger = "0.4.3"
