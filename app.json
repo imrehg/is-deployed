@@ -6,7 +6,7 @@
   "addons": [],
   "buildpacks": [
     {
-      "url": "https://github.com/emk/heroku-buildpack-rust"
+      "url": "https://github.com/emk/heroku-buildpack-rust.git"
     }
   ]
 }
