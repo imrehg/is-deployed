@@ -21,11 +21,8 @@ fn main() {
     env_logger::init().unwrap();
     info!("starting up");
 
-    match env::var("PORT") {
-        Ok(port) => println!("Port: {}", port),
-        Err(e) => println!("Couldn't read LANG ({})", e),
-    };
-    let port: String = env::var("PORT").unwrap();
+    let default_port = String::from("8000");
+    let port: String = env::var("PORT").unwrap_or(default_port);
     info!("Port: {}", port);
 
     let mut router = Router::new();
