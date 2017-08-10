@@ -13,14 +13,12 @@ use router::Router;
 use tera::Context;
 use iron_tera::{Template, TeraEngine, TemplateMode};
 use staticfile::Static;
-use std::env;
 use mount::Mount;
 
 pub fn start_server(host: &str, port: &str) -> iron::Listening {
     info!("starting up");
 
-    // let default_port = String::from("8000");
-    // let port: String = env::var("PORT").unwrap_or(default_port);
+    info!("Host: {}", host);
     info!("Port: {}", port);
 
     let mut router = Router::new();
@@ -34,7 +32,7 @@ pub fn start_server(host: &str, port: &str) -> iron::Listening {
     let teng = TeraEngine::new("templates/**/*");
     chain.link_after(teng);
 
-    Iron::new(chain).http(format!("0.0.0.0:{}", port)).expect(
+    Iron::new(chain).http(format!("{}:{}", host, port)).expect(
         "Unable to start server",
     )
 }
